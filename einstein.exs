@@ -6,6 +6,9 @@ defmodule Permutations do
 end
 
 defmodule Einstein do
+  def solve do
+    solve_colors()
+  end
   def left_of?(set_a, val_a, set_b, val_b) do
     (0..4)
     |> Enum.any?(fn(x) -> Enum.at(set_a, x) == val_a && Enum.at(set_b, x+1) == val_b end)
@@ -57,6 +60,10 @@ defmodule Einstein do
       implies?(cigars, :bluemasters,  drinks, :beer)
       do
         IO.inspect([colors, nationalities, pets, drinks, cigars])
+        List.zip([colors, nationalities, pets, drinks, cigars])
+        |> Enum.each(fn({color, nat, pet, drink, cigar}) ->
+            IO.puts("The #{nat} lives in the #{color} house, has a #{pet}, drinks #{drink} and prefers #{cigar} when smoking.")
+          end)
         System.halt(0)
     end
   end
